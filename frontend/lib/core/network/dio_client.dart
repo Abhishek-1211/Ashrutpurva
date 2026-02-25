@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import '../constants/api_constants.dart';
 
 class DioClient {
   final Dio _dio = Dio();
   final _storage = const FlutterSecureStorage();
 
   DioClient() {
-    _dio.options.baseUrl = 'http://10.0.2.2:8000/api';
+    _dio.options.baseUrl = ApiConstants.baseUrl;
     _dio.options.connectTimeout = const Duration(seconds: 10);
     _dio.options.receiveTimeout = const Duration(seconds: 10);
 

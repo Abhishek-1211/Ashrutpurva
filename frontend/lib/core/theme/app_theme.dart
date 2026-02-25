@@ -2,91 +2,62 @@ import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
 class AppTheme {
-  static ThemeData get lightTheme {
+  static ThemeData createTheme(AppPalette palette) {
     return ThemeData(
       useMaterial3: true,
+      brightness: palette.brightness,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: AppColors.primary,
-        primary: AppColors.primary,
-        secondary: AppColors.accent,
-        surface: AppColors.lightBg,
+        seedColor: palette.primary,
+        primary: palette.primary,
+        secondary: palette.accent,
+        surface: palette.background,
+        brightness: palette.brightness,
       ),
-      scaffoldBackgroundColor: AppColors.lightBg,
-      appBarTheme: const AppBarTheme(
-        backgroundColor: AppColors.lightBg,
+      scaffoldBackgroundColor: palette.background,
+      appBarTheme: AppBarTheme(
+        backgroundColor: palette.background,
         elevation: 0,
         centerTitle: true,
         titleTextStyle: TextStyle(
-          color: AppColors.lightText,
+          color: palette.text,
           fontSize: 20,
           fontWeight: FontWeight.bold,
           letterSpacing: 1.2,
         ),
-        iconTheme: IconThemeData(color: AppColors.lightText),
+        iconTheme: IconThemeData(color: palette.text),
       ),
-      textTheme: const TextTheme(
+      textTheme: TextTheme(
         displayLarge: TextStyle(
           fontSize: 32,
           fontWeight: FontWeight.bold,
-          color: AppColors.lightText,
+          color: palette.text,
           letterSpacing: -0.5,
         ),
         bodyLarge: TextStyle(
           fontSize: 18,
-          color: AppColors.lightText,
+          color: palette.text,
           height: 1.6,
         ),
         bodyMedium: TextStyle(
           fontSize: 16,
-          color: AppColors.greyText,
+          color: palette.secondaryText,
           height: 1.4,
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: palette.primary,
+          foregroundColor: palette.brightness == Brightness.dark ? Colors.white : palette.background,
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
         ),
       ),
     );
   }
 
-  static ThemeData get darkTheme {
-    return ThemeData(
-      useMaterial3: true,
-      brightness: Brightness.dark,
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: AppColors.primary,
-        primary: AppColors.accent,
-        secondary: AppColors.accent,
-        surface: AppColors.darkBg,
-        brightness: Brightness.dark,
-      ),
-      scaffoldBackgroundColor: AppColors.darkBg,
-      appBarTheme: const AppBarTheme(
-        backgroundColor: AppColors.darkBg,
-        elevation: 0,
-        centerTitle: true,
-        titleTextStyle: TextStyle(
-          color: AppColors.darkText,
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          letterSpacing: 1.2,
-        ),
-        iconTheme: IconThemeData(color: AppColors.darkText),
-      ),
-      textTheme: const TextTheme(
-        displayLarge: TextStyle(
-          fontSize: 32,
-          fontWeight: FontWeight.bold,
-          color: AppColors.darkText,
-          letterSpacing: -0.5,
-        ),
-        bodyLarge: TextStyle(
-          fontSize: 18,
-          color: AppColors.darkText,
-          height: 1.6,
-        ),
-        bodyMedium: TextStyle(
-          fontSize: 16,
-          color: AppColors.greyText,
-          height: 1.4,
-        ),
-      ),
-    );
-  }
+  // Legacy static getters for back-compatibility during migration
+  static ThemeData get lightTheme => createTheme(AppPalette.pureIvory);
+  static ThemeData get darkTheme => createTheme(AppPalette.obsidianGold);
 }
