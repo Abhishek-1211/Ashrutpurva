@@ -57,7 +57,7 @@ class AppTheme {
     );
   }
 
-  // Legacy static getters for back-compatibility during migration
-  static ThemeData get lightTheme => createTheme(AppPalette.pureIvory);
-  static ThemeData get darkTheme => createTheme(AppPalette.obsidianGold);
+  // Updated default getters for internal framework compatibility
+  static ThemeData get lightTheme => createTheme(AppPalette.koraClassic);
+  static ThemeData get darkTheme => createTheme(AppPalette.midnightMushaira);
 }

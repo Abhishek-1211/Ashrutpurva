@@ -11,9 +11,9 @@ class ThemeState {
   });
 
   factory ThemeState.initial() {
-    return ThemeState(
-      themeType: AppThemeType.obsidianGold,
-      palette: AppPalette.obsidianGold,
+    return const ThemeState(
+      themeType: AppThemeType.koraClassic,
+      palette: AppPalette.koraClassic,
     );
   }
 
